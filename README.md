@@ -28,4 +28,5 @@ Built using botkit ( https://github.com/howdyai/botkit )
 
 ### Updates
 
+* 02/09/2016 - Added response when no orders have been placed after 'done' command is called.
 * 02/09/2016 - Added functionality to prevent a new order being started when an order already exists.
