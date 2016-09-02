@@ -76,16 +76,19 @@ controller.hears(['team'],['ambient'], function(bot,message) {
 controller.hears(['me'],['direct_mention', 'mention'], function(bot,message) {
   ordered = [];
   orders = [];
-
-  bot.api.users.info({user: message.user}, function(err, response) {
-    bot.say({channel: message.channel, text: "Hey, I'm coffeebot! :coffee:"});
-    bot.say({channel: message.channel, text: "You, " + response.user.name + ", have volunteered yourself to do the coffee run!"});
-    collectOrders();
-    bot.say({channel: message.channel, text: "Now listening for orders..."});
-    bot.say({channel: message.channel, text: "To add an order type 'order <your order here>'"});
-    bot.say({channel: message.channel, text: "e,g 'order regular americano'"});
-    bot.say({channel: message.channel, text: "When orders have been taken type 'done' to end & type 'list' to show all orders!"});
-  });
+  if(listening) {
+    bot.say({channel: message.channel, text: "Sorry, An order has already been started."});
+  } else {
+    bot.api.users.info({user: message.user}, function(err, response) {
+      bot.say({channel: message.channel, text: "Hey, I'm coffeebot! :coffee:"});
+      bot.say({channel: message.channel, text: "You, " + response.user.name + ", have volunteered yourself to do the coffee run!"});
+      collectOrders();
+      bot.say({channel: message.channel, text: "Now listening for orders..."});
+      bot.say({channel: message.channel, text: "To add an order type 'order <your order here>'"});
+      bot.say({channel: message.channel, text: "e,g 'order regular americano'"});
+      bot.say({channel: message.channel, text: "When orders have been taken type 'done' to end & type 'list' to show all orders!"});
+    });
+  }
 });
 
 controller.hears(['random'],['direct_mention', 'mention'], function(bot,message) {
@@ -94,15 +97,19 @@ controller.hears(['random'],['direct_mention', 'mention'], function(bot,message)
 
   ordered = [];
   var teamMember = getRandomTeam();
-  bot.api.users.info({user: message.user}, function(err, response) {
-    bot.say({channel: message.channel, text: "Hey, I'm coffeebot! :coffee:"});
-    bot.say({channel: message.channel, text: teamMember.name + " has been selected to do the coffee run!"});
-    collectOrders();
-    bot.say({channel: message.channel, text: "Now listening for orders..."});
-    bot.say({channel: message.channel, text: "To add an order type 'order <your order here>'"});
-    bot.say({channel: message.channel, text: "e,g 'order regular americano'"});
-    bot.say({channel: message.channel, text: "When orders have been taken type 'done' to end & type 'list' to show all orders!"});
-  });
+  if(listening) {
+    bot.say({channel: message.channel, text: "Sorry, An order has already been started."});
+  } else {
+    bot.api.users.info({user: message.user}, function(err, response) {
+      bot.say({channel: message.channel, text: "Hey, I'm coffeebot! :coffee:"});
+      bot.say({channel: message.channel, text: teamMember.name + " has been selected to do the coffee run!"});
+      collectOrders();
+      bot.say({channel: message.channel, text: "Now listening for orders..."});
+      bot.say({channel: message.channel, text: "To add an order type 'order <your order here>'"});
+      bot.say({channel: message.channel, text: "e,g 'order regular americano'"});
+      bot.say({channel: message.channel, text: "When orders have been taken type 'done' to end & type 'list' to show all orders!"});
+    });
+  }
 });
 
 
