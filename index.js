@@ -20,7 +20,6 @@ var bot = controller.spawn({
         if (response.hasOwnProperty('members') && response.ok) {
             var total = response.members.length;
             for (var i = 0; i < total; i++) {
-                // console.log(response.members[i]);
                 var member = response.members[i];
                 fullTeamList.push({name: member.name, id: member.id, bot: member.is_bot});
             }
@@ -111,7 +110,6 @@ controller.hears(['random'],['direct_mention', 'mention'], function(bot,message)
 
 var collectOrders = function() {
   listening = true;
-  console.log('listening ' + listening);
 
   controller.hears(['order'],['direct_mention', 'mention'], function(bot,message) {
     var member = getMemberName(message.user);
@@ -131,7 +129,6 @@ var collectOrders = function() {
 
   controller.hears(['done'],['direct_mention', 'mention'], function(bot,message) {
     listening = false;
-    console.log('stop listening ' + listening);
     bot.say({channel: message.channel, text: "Ordering Complete! Thanks for using CoffeeBot! :coffee:"});
     bot.say({channel: message.channel, text: "Team Orders:"});
     orders.forEach(function(item) {
