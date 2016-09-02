@@ -128,12 +128,17 @@ var collectOrders = function() {
 
   controller.hears(['done'],['direct_mention', 'mention'], function(bot,message) {
     listening = false;
-    bot.say({channel: message.channel, text: "Ordering Complete! :coffee:"});
-    bot.say({channel: message.channel, text: "Team Orders:"});
-    orders.forEach(function(item) {
-      var member = getMemberName(item.user);
-      bot.say({channel: message.channel, text: member + " ordered " + item.order});
-    });
+    if(orders.length = 1) {
+      bot.say({channel: message.channel, text: "No orders were placed! :confused:"});
+      bot.say({channel: message.channel, text: "Type: '" + config.botname + " me / random' to start again!"});
+    } else {
+      bot.say({channel: message.channel, text: "Ordering Complete! :coffee:"});
+      bot.say({channel: message.channel, text: "Team Orders:"});
+      orders.forEach(function(item) {
+        var member = getMemberName(item.user);
+        bot.say({channel: message.channel, text: member + " ordered " + item.order});
+      });
+    }
   });
 }
 
