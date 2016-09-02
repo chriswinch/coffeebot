@@ -1,4 +1,4 @@
-# CoffeeBot
+# CoffeeBot :coffee:
 Round up the coffee order for your team on slack!
 
 ### Getting Started
