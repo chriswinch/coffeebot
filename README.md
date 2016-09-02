@@ -19,6 +19,7 @@ Running '@botname me / random' commands again will wipe all previous orders and 
 ### Todo
 * Possibly make the bot a /slash command
 * Allow user to enter shop name / location for the coffee run
+* Allow user to update order after they have already added an order
 * Testing with multiple users ( only tested in slack channel with 1 user at the moment )
 
 ### Credits
