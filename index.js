@@ -79,7 +79,7 @@ controller.hears(['me'],['direct_mention', 'mention'], function(bot,message) {
       collectOrders();
       bot.say({channel: message.channel, text: "Now listening for orders..."});
       bot.say({channel: message.channel, text: "To add an order type '" + config.botname + " order <your order here>'"});
-      bot.say({channel: message.channel, text: "e,g 'order regular americano'"});
+      bot.say({channel: message.channel, text: "e.g '" + config.botname + " order regular americano'"});
       bot.say({channel: message.channel, text: "When orders have been taken type '" + config.botname + " done' to end & type '" + config.botname + " list' to show all orders!"});
     });
   }
