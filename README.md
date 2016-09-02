@@ -20,7 +20,12 @@ Running '@botname me / random' commands again will wipe all previous orders and 
 * Possibly make the bot a /slash command
 * Allow user to enter shop name / location for the coffee run
 * Allow user to update order after they have already added an order
+* Add 'restart' command to restart an order
 * Testing with multiple users ( only tested in slack channel with 1 user at the moment )
 
 ### Credits
 Built using botkit ( https://github.com/howdyai/botkit )
+
+### Updates
+
+* 02/09/2016 - Added functionality to prevent a new order being started when an order already exists.
