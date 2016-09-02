@@ -69,10 +69,6 @@ var ordered = [];
 var listening = false;
 var orders = [];
 
-controller.hears(['team'],['ambient'], function(bot,message) {
-  console.log(fullTeamList);
-});
-
 controller.hears(['me'],['direct_mention', 'mention'], function(bot,message) {
   ordered = [];
   orders = [];
@@ -117,7 +113,7 @@ var collectOrders = function() {
   listening = true;
   console.log('listening ' + listening);
 
-  controller.hears(['order'],['direct_mention', 'mention', 'ambient'], function(bot,message) {
+  controller.hears(['order'],['direct_mention', 'mention'], function(bot,message) {
     var member = getMemberName(message.user);
 
     if(listening == true) {
