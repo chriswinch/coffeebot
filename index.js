@@ -68,11 +68,11 @@ var listening = false;
 var orders = [];
 
 controller.hears(['me'],['direct_mention', 'mention'], function(bot,message) {
-  ordered = [];
-  orders = [];
   if(listening) {
     bot.say({channel: message.channel, text: "Sorry, An order has already been started."});
   } else {
+    ordered = [];
+    orders = [];
     bot.api.users.info({user: message.user}, function(err, response) {
       bot.say({channel: message.channel, text: "Hey, I'm " + config.botname + "  :coffee:"});
       bot.say({channel: message.channel, text: "You, " + response.user.name + ", have volunteered yourself to do the coffee run!"});
@@ -128,7 +128,7 @@ var collectOrders = function() {
 
   controller.hears(['done'],['direct_mention', 'mention'], function(bot,message) {
     listening = false;
-    if(orders.length = 1) {
+    if(orders.length < 1) {
       bot.say({channel: message.channel, text: "No orders were placed! :confused:"});
       bot.say({channel: message.channel, text: "Type: '" + config.botname + " me / random' to start again!"});
     } else {
@@ -143,9 +143,14 @@ var collectOrders = function() {
 }
 
 controller.hears(['list'],['direct_mention', 'mention'], function(bot,message) {
-  bot.say({channel: message.channel, text: "Team Orders:"});
-  orders.forEach(function(item) {
-    var member = getMemberName(item.user);
-    bot.say({channel: message.channel, text: member + " ordered " + item.order});
-  });
+  if(orders.length < 1) {
+    bot.say({channel: message.channel, text: "No orders were placed! :confused:"});
+    bot.say({channel: message.channel, text: "Type: '" + config.botname + " me / random' to start again!"});
+  } else {
+    bot.say({channel: message.channel, text: "Team Orders:"});
+    orders.forEach(function(item) {
+      var member = getMemberName(item.user);
+      bot.say({channel: message.channel, text: member + " ordered " + item.order});
+    });
+  }
 });
