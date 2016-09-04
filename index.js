@@ -1,5 +1,4 @@
 var Botkit = require('botkit');
-var accessToken = require('./access_token.js');
 var config = require('./config.js');
 
 var controller = Botkit.slackbot({
@@ -9,7 +8,7 @@ var controller = Botkit.slackbot({
 var fullTeamList = [];
 var fullChannelList = [];
 
-var bot = controller.spawn(accessToken).startRTM(function (err, bot) {
+var bot = controller.spawn(process.env.ACCESS_TOKEN).startRTM(function (err, bot) {
     if (err) {
         throw new Error(err);
     }
